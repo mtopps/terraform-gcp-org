@@ -1,0 +1,1 @@
+state_location["PROD"]="tf-state-mtopps-cicd/tfstate/${git_project_name}/PROD"
