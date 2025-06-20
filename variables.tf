@@ -42,14 +42,6 @@ variable "projects" {
     ])
     error_message = "Project names must be between 1 and 30 characters long."
   }
-
-  validation {
-    condition = alltrue([
-      for project_name, config in var.projects :
-      contains(["nwhp", "colab", "compute", "observability"], config.folder_name)
-    ])
-    error_message = "Folder name must be one of: nwhp, colab, compute, observability."
-  }
 }
 
 variable "notification_channels" {
