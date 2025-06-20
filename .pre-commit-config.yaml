@@ -1,0 +1,19 @@
+repos:
+  - repo: https://github.com/terraform-docs/terraform-docs
+    rev: "v0.16.0"
+    hooks:
+      - id: terraform-docs-go
+        args: ["markdown", "table", "--output-file", "README.md", "./"]
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: "v1.99.4"
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_validate
+      - id: terraform_tflint
+        args:
+          - --args=--call-module-type=all
+          - --args=--enable-rule=terraform_documented_variables
+      - id: terraform_checkov
+        args:
+          - --args=--quiet
+          - --args=--skip-check CKV_TF_1,CKV_GCP_49,CKV_GCP_117
